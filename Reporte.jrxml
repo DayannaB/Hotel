@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8be1aadd-5e6d-4e73-8db8-b7db91cb06fd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select to_char( fechainicioalojamiento,'YYYY') as año, count(idalojamiento) as cantidad from estancia
+group by año]]>
+	</queryString>
+	<field name="año" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement x="201" y="0" width="206" height="69" uuid="2353b4a0-fdcd-40a3-9d9b-ed67a0f738ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[FACCI - HOTEL]]></text>
+			</staticText>
+			<image>
+				<reportElement x="428" y="0" width="116" height="69" uuid="58c9e8c6-aa06-49e8-a8dd-7c534045adad"/>
+				<imageExpression><![CDATA["D:\\Descargas\\logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="201" y="0" width="202" height="35" uuid="9e13ef90-e7cd-46ca-96f1-aab2babb77c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Total de alojamientos por Año]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="288" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="72" y="0" width="406" height="288" uuid="21e5c581-f3fd-4b9d-a54b-f80d5181c18f"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Cantidad de alojamientos"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{año}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{cantidad}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#990099"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>
